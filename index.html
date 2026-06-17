@@ -214,7 +214,7 @@
             font-size: 15px;
         }
 
-        /* Sub Modules Modules */
+        /* Sub Modules Styles */
         .module-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -273,15 +273,15 @@
         }
 
         .quran-item, .hadith-item {
-            background: rgba(255,255,255,0.03);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--card-border);
-            padding: 15px;
-            border-radius: 12px;
+            padding: 18px;
+            border-radius: 16px;
             margin-bottom: 15px;
         }
 
         .quran-item h4 { color: var(--accent); margin-bottom: 5px; }
-        .arabic-text { font-size: 22px; text-align: right; margin: 10px 0; font-family: 'Amiri', serif; line-height: 1.8; color: #6ee7b7;}
+        .arabic-text { font-size: 24px; text-align: right; margin: 12px 0; line-height: 1.8; color: #6ee7b7;}
 
         /* Bottom Nav */
         .bottom-nav {
@@ -335,13 +335,13 @@
                 </div>
             </div>
             <div class="top-actions">
-                <button class="action-btn" onclick="toggleLanguage()">EN</button>
+                <button class="action-btn" onclick="toggleLanguage()" id="btnLang">EN</button>
             </div>
         </div>
 
         <div class="date-container">
-            <div class="hijri" id="lblHijri">২৪ জিলহজ, ১৪৪৭ হিজরি</div>
-            <div class="gregorian" id="lblGregorian">১০ জুন, ২০২৬</div>
+            <div class="hijri" id="lblHijri">২ মহররম, ১৪৪৮ হিজরি</div>
+            <div class="gregorian" id="lblGregorian">১৭ জুন, ২০২৬</div>
         </div>
 
         <main id="mainContent">
@@ -359,35 +359,35 @@
                     <div class="prayer-row" id="p-fajr">
                         <div class="prayer-info">
                             <i class="fa-solid fa-cloud-sun"></i>
-                            <div class="prayer-names"><h3 class="bn">ফজর</h3><span class="en hidden">Fajr</span><p>Fajr</p></div>
+                            <div class="prayer-names"><h3>ফجر / Fajr</h3><p>ভোর ০৩:৪৪</p></div>
                         </div>
                         <div class="prayer-time">03:44 AM</div>
                     </div>
                     <div class="prayer-row active" id="p-dhuhr">
                         <div class="prayer-info">
                             <i class="fa-solid fa-sun"></i>
-                            <div class="prayer-names"><h3 class="bn">যোহর</h3><span class="en hidden">Dhuhr</span><p>Dhuhr</p></div>
+                            <div class="prayer-names"><h3>যোহর / Dhuhr</h3><p>দুপুর ১১:৫৯</p></div>
                         </div>
                         <div class="prayer-time">11:59 AM</div>
                     </div>
                     <div class="prayer-row" id="p-asr">
                         <div class="prayer-info">
                             <i class="fa-solid fa-cloud-sun-rain"></i>
-                            <div class="prayer-names"><h3 class="bn">আসর</h3><span class="en hidden">Asr</span><p>Asr (Hanafi)</p></div>
+                            <div class="prayer-names"><h3>আসর / Asr</h3><p>বিকেল ০৪:৪১</p></div>
                         </div>
                         <div class="prayer-time">04:41 PM</div>
                     </div>
                     <div class="prayer-row" id="p-maghrib">
                         <div class="prayer-info">
                             <i class="fa-solid fa-mountain-sun"></i>
-                            <div class="prayer-names"><h3 class="bn">মাগরিব</h3><span class="en hidden">Maghrib</span><p>Maghrib</p></div>
+                            <div class="prayer-names"><h3>মাগরিব / Maghrib</h3><p>সন্ধ্যা ০৬:৪৭</p></div>
                         </div>
                         <div class="prayer-time">06:47 PM</div>
                     </div>
                     <div class="prayer-row" id="p-isha">
                         <div class="prayer-info">
                             <i class="fa-solid fa-moon"></i>
-                            <div class="prayer-names"><h3 class="bn">এশা</h3><span class="en hidden">Isha</span><p>Isha</p></div>
+                            <div class="prayer-names"><h3>এশা / Isha</h3><p>রাত ০৮:১৪</p></div>
                         </div>
                         <div class="prayer-time">08:14 PM</div>
                     </div>
@@ -398,8 +398,8 @@
                 <div class="module-card">
                     <h2 id="lblTasbihTitle">ডিজিটাল তাসবিহ</h2>
                     <div class="counter-box" id="tasbihCount">0</div>
-                    <button class="btn" onclick="incrementTasbih()" style="padding: 22px; font-size: 20px; margin-bottom: 12px; background: #10b981;">COUNT</button>
-                    <button class="btn" onclick="resetTasbih()" style="background: #ef4444; padding: 8px; font-size: 14px;">Reset</button>
+                    <button class="btn" onclick="incrementTasbih()" style="padding: 25px; font-size: 22px; margin-bottom: 15px; background: #10b981;">COUNT (পড়ুন)</button>
+                    <button class="btn" onclick="resetTasbih()" style="background: #ef4444; padding: 10px; font-size: 14px;">Reset (রিসেট)</button>
                 </div>
             </div>
 
@@ -420,12 +420,12 @@
                     <div class="quran-item">
                         <h4>১. সূরা আল-ফাতিহা (Al-Fatiha)</h4>
                         <div class="arabic-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-                        <p style="font-size: 14px; line-height: 1.5; color: var(--text-secondary);">"শুরু করছি আল্লাহর নামে যিনি পরম করুণাময়, অতি dyalu।"</p>
+                        <p id="quranTrans1" style="font-size: 14px; line-height: 1.5; color: var(--text-secondary);">"শুরু করছি আল্লাহর নামে যিনি পরম করুণাময়, অতি দয়ালু।"</p>
                     </div>
                     <div class="quran-item">
                         <h4>১১২. সূরা আল-ইখলাস (Al-Ikhlas)</h4>
-                        <div class="arabic-text">قُلْ هُوَ اللَّهُ أَحَدٌ</div>
-                        <p style="font-size: 14px; line-height: 1.5; color: var(--text-secondary);">"বলুন, তিনিই আল্লাহ, এক-অদ্বিতীয়।"</p>
+                        <div class="arabic-text">قُلْ هُوَ اللَّلهُ أَحَدٌ</div>
+                        <p id="quranTrans2" style="font-size: 14px; line-height: 1.5; color: var(--text-secondary);">"বলুন, তিনিই আল্লাহ, এক-অদ্বিতীয়।"</p>
                     </div>
                 </div>
             </div>
@@ -434,10 +434,10 @@
                 <div class="module-card">
                     <h2 id="lblHadithTitle">আজকের হাদিস</h2>
                     <div class="hadith-item" style="margin-top: 15px;">
-                        <p style="font-size: 16px; line-height: 1.6; font-style: italic; color: #fff;">
+                        <p id="lblHadithText" style="font-size: 16px; line-height: 1.6; font-style: italic; color: #fff;">
                             "নিশ্চয়ই প্রতিটি কাজের ফলাফল নিয়তের ওপর নির্ভরশীল।"
                         </p>
-                        <span style="display:block; margin-top: 12px; text-align: right; color: var(--accent); font-weight: 500;">
+                        <span id="lblHadithRef" style="display:block; margin-top: 12px; text-align: right; color: var(--accent); font-weight: 500;">
                             — সহীহ বুখারী, হাদিস ১
                         </span>
                     </div>
@@ -456,21 +456,21 @@
     </nav>
 
     <script>
-        // 1. Navigation Controller (Fixed & Non-crashing)
+        // 1. Navigation Tab Switcher Engine
         function navigate(viewName, element) {
-            // Hide all views safely
+            // Hide all views completely
             const views = document.querySelectorAll('.app-view');
             views.forEach(view => {
                 view.classList.add('hidden');
             });
 
-            // Remove active status from tab buttons
+            // Reset active state for all navigation buttons
             const items = document.querySelectorAll('.nav-item');
             items.forEach(item => {
                 item.classList.remove('active');
             });
             
-            // Activate selected view
+            // Activate target view safely
             const targetView = document.getElementById('view-' + viewName);
             if(targetView) {
                 targetView.classList.remove('hidden');
@@ -480,7 +480,7 @@
             }
         }
 
-        // 2. Tasbih Core Functionality
+        // 2. Digital Tasbih Mechanics
         let tasbihCounter = 0;
         function incrementTasbih() {
             tasbihCounter++;
@@ -491,7 +491,7 @@
             document.getElementById('tasbihCount').innerText = tasbihCounter;
         }
 
-        // 3. Zakat Calculator Core
+        // 3. Zakat Calculator Formula
         function calcZakat() {
             const inputVal = document.getElementById('zakatInput').value;
             const resDiv = document.getElementById('zakatResult');
@@ -507,7 +507,7 @@
             }
         }
 
-        // 4. Safe Language Engine
+        // 4. Bilingual Language Localizer
         let currentLang = 'bn';
         function toggleLanguage() {
             currentLang = currentLang === 'bn' ? 'en' : 'bn';
@@ -521,11 +521,8 @@
             const hadithTitle = document.getElementById('lblHadithTitle');
             const zakatInput = document.getElementById('zakatInput');
             const btnZakatCalc = document.getElementById('btnZakatCalc');
-            
-            // Tab text variables
+            const btnLang = document.getElementById('btnLang');
             const navTexts = document.querySelectorAll('.nav-text');
-            const bns = document.querySelectorAll('.bn');
-            const ens = document.querySelectorAll('.en');
 
             if(currentLang === 'en') {
                 title.innerText = "Noor-E-Iman";
@@ -536,18 +533,17 @@
                 zakatTitle.innerText = "Zakat Calculator";
                 quranTitle.innerText = "Al-Quran";
                 hadithTitle.innerText = "Hadith of the Day";
-                zakatInput.placeholder = "Enter total savings/assets value";
+                zakatInput.placeholder = "Enter total assets value";
                 btnZakatCalc.innerText = "Calculate";
+                btnLang.innerText = "বাংলা";
                 
-                document.getElementById('lblHijri').innerText = "24 Dhul-Hijjah, 1447 AH";
-                document.getElementById('lblGregorian').innerText = "10 June, 2026";
+                document.getElementById('lblHijri').innerText = "2 Muharram, 1448 AH";
+                document.getElementById('lblGregorian').innerText = "17 June, 2026";
+                document.getElementById('quranTrans1').innerText = '"In the name of Allah, the Entirely Merciful, the Especially Merciful."';
+                document.getElementById('quranTrans2').innerText = '"Say, He is Allah, One."';
+                document.getElementById('lblHadithText').innerText = '"The reward of deeds depends upon the intentions."';
+                document.getElementById('lblHadithRef').innerText = '— Sahih al-Bukhari, Hadith 1';
 
                 navTexts[0].innerText = "Time";
                 navTexts[1].innerText = "Tasbih";
-                navTexts[2].innerText = "Zakat";
-                navTexts[3].innerText = "Quran";
-                navTexts[4].innerText = "Hadith";
-            } else {
-                title.innerText = "নূরে ঈমান";
-                subtitle.innerText = "ইসলামিক কম্পানিয়ন";
-                nextPrayerTitle.innerText
+        
