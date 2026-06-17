@@ -3,300 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noor-E-Iman | নূরে ঈমান</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@300;400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-
+    <title>Noor-E-Iman</title>
     <style>
-        body {
-            font-family: 'Anek Bangla', sans-serif;
-            background: linear-gradient(135deg, #022c22 0%, #064e3b 40%, #0b1329 100%);
-            min-height: 100vh;
-            color: #f3f4f6;
-            transition: background 0.3s, color 0.3s;
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #0d9488;
+            --accent: #f59e0b;
+            --bg: #f8fafc;
+            --text: #1e293b;
         }
-        .arabic-text {
-            font-family: 'Amiri', serif;
-            direction: rtl;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-        }
-        .glass-card-active {
-            background: rgba(4, 120, 87, 0.2);
-            border: 1px solid rgba(52, 211, 153, 0.4);
-            box-shadow: 0 0 15px rgba(52, 211, 153, 0.2);
-        }
-        /* Light Mode Overrides */
-        body.light-theme {
-            background: linear-gradient(135deg, #f0fdf4 0%, #e8f5e9 50%, #f3f4f6 100%);
-            color: #1f2937;
-        }
-        body.light-theme .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(4, 120, 87, 0.1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-        body.light-theme .glass-card-active {
-            background: rgba(209, 250, 229, 1);
-            border: 1px solid rgba(4, 120, 87, 0.3);
-        }
-        /* Hide scrollbars but keep functionality */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg); color: var(--text); padding-bottom: 60px; }
+        header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 20px; text-align: center; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .container { max-width: 600px; margin: 20px auto; padding: 0 15px; }
+        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 15px; }
+        .btn { background: var(--secondary); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; width: 100%; font-size: 16px; margin-top: 10px; }
+        .btn:active { transform: scale(0.98); }
+        .hidden { display: none !important; }
+        .nav-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; padding: 10px 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); }
+        .nav-item { border: none; background: none; color: #64748b; font-size: 12px; cursor: pointer; display: flex; flex-direction: column; align-items: center; }
+        .nav-item.active { color: var(--secondary); font-weight: bold; }
+        .nav-item i { font-size: 20px; margin-bottom: 2px; }
+        .tasbih-display { font-size: 48px; text-align: center; margin: 20px 0; font-weight: bold; color: var(--primary); }
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; margin-bottom: 5px; font-weight: 500; }
+        .input-group input { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="pb-24">
+<body>
 
-    <header class="glass-card sticky top-0 z-50 px-4 py-3 flex items-center justify-between rounded-b-2xl mx-1 mt-0">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-900/40">
-                <i class="fa-solid fa-moon text-white text-lg"></i>
-            </div>
-            <div>
-                <h1 id="nav-title" class="font-bold text-lg text-emerald-400">নূরে ঈমান</h1>
-                <p id="nav-subtitle" class="text-xs opacity-70">ইসলামিক কম্পানিয়ন</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <button onclick="toggleLanguage()" class="px-3 py-1 rounded-full text-xs font-semibold glass-card border border-emerald-500/30 hover:bg-emerald-500/20 transition cursor-pointer">
-                <span id="lang-btn-text">EN</span>
-            </button>
-            <button onclick="toggleTheme()" class="w-8 h-8 rounded-full flex items-center justify-center glass-card hover:bg-white/10 cursor-pointer">
-                <i id="theme-icon" class="fa-solid fa-sun text-amber-400"></i>
-            </button>
-        </div>
+    <header>
+        <h1 id="appTitle">নূর-ই-ইমান</h1>
+        <button onclick="toggleLanguage()" style="position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.2); border: none; color: white; padding: 5px 10px; border-radius: 4px; cursor: pointer;">EN/বাংলা</button>
     </header>
 
-    <div class="px-4 mt-4 text-right">
-        <p id="hijri-date" class="text-sm font-semibold text-emerald-400">৩০ জিলহজ, ১৪৪৭ হিজরি</p>
-        <p id="gregorian-date" class="text-xs opacity-60">১৭ জুন, ২০২৬</p>
+    <div class="container">
+        <div id="prayer" class="main-section">
+            <div class="card">
+                <h2 class="section-title">নামাজের সময়সূচী (Prayer Times)</h2>
+                <p style="margin-top: 10px; color: #64748b;">ঢাকা, বাংলাদেশ এর সময় অনুযায়ী</p>
+                <div style="margin-top: 15px;">
+                    <p style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">ফজর (Fajr): <span style="float:right; font-weight:bold;">৪:১০ AM</span></p>
+                    <p style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">যোহর (Dhuhr): <span style="float:right; font-weight:bold;">১২:১৫ PM</span></p>
+                    <p style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">আসর (Asr): <span style="float:right; font-weight:bold;">৪:৪৫ PM</span></p>
+                    <p style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">মাগরিব (Maghrib): <span style="float:right; font-weight:bold;">৬:৫০ PM</span></p>
+                    <p style="padding: 10px 0;">এশা (Isha): <span style="float:right; font-weight:bold;">৮:১৫ PM</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="zakat" class="main-section hidden">
+            <div class="card">
+                <h2>যাকাত ক্যালকুলেটর</h2>
+                <div class="input-group" style="margin-top: 15px;">
+                    <label>সোনার মূল্য বা সঞ্চিত টাকা (টাকায়):</label>
+                    <input type="number" id="zakatAsset" placeholder="মোট সম্পদের পরিমাণ লিখুন">
+                </div>
+                <button class="btn" onclick="calculateZakat()">হিসাব করুন</button>
+                <h3 id="zakatResult" style="margin-top: 20px; text-align: center; color: var(--primary);"></h3>
+            </div>
+        </div>
+
+        <div id="tasbih" class="main-section hidden">
+            <div class="card" style="text-align: center;">
+                <h2>তাসবিহ কাউন্টার</h2>
+                <div class="tasbih-display" id="counterDisplay">0</div>
+                <button class="btn" style="padding: 20px; font-size: 20px; background: var(--primary);" onclick="countTasbih()">পড়ুন (Count)</button>
+                <button class="btn" style="background: #ef4444; margin-top: 10px;" onclick="resetTasbih()">রিসেট (Reset)</button>
+            </div>
+        </div>
+
+        <div id="quran" class="main-section hidden">
+            <div class="card">
+                <h2>আল-কুরআন (সূরাসমূহ)</h2>
+                <div style="margin-top: 15px;">
+                    <div class="card" style="background: #f8fafc; cursor: pointer;">
+                        <h3>১. সূরা আল-ফাতিহা</h3>
+                        <p style="font-style: italic; margin-top: 5px;">শুরু করছি আল্লাহর নামে যিনি পরম করুণাময়, অতি দয়ালু।</p>
+                    </div>
+                    <div class="card" style="background: #f8fafc; cursor: pointer;">
+                        <h3>১১২. সূরা আল-ইখলাস</h3>
+                        <p style="font-style: italic; margin-top: 5px;">বলুন, তিনিই আল্লাহ, এক-অদ্বিতীয়।</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="hadith" class="main-section hidden">
+            <div class="card">
+                <h2>আজকের হাদিস</h2>
+                <div class="card" style="background: #f8fafc; margin-top: 15px;">
+                    <p style="font-size: 16px; line-height: 1.6;">"নিশ্চয়ই প্রতিটি কাজের ফলাফল নিয়তের ওপর নির্ভরশীল।"</p>
+                    <span style="display:block; margin-top: 10px; text-align: right; color: #64748b; font-weight: 500;">— সহীহ বুখারী, হাদিস ১</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="qibla" class="main-section hidden">
+            <div class="card" style="text-align: center;">
+                <h2>কিবলা কম্পাস</h2>
+                <p style="margin: 15px 0; color: #64748b;">আপনার মোবাইলের লোকেশন ও সেন্সর অন রাখুন।</p>
+                <div style="width: 150px; height: 150px; border: 4px solid var(--primary); border-radius: 50%; margin: 20px auto; display: flex; align-items: center; justify-content: center; position: relative;">
+                    <i class="fa-solid fa-arrow-up" style="font-size: 40px; color: #ef4444; transition: transform 0.2s;"></i>
+                </div>
+                <p style="font-weight: bold; color: var(--secondary);">কিবলার দিক: ২৯১° (পশ্চিম-উত্তর-পশ্চিম)</p>
+            </div>
+        </div>
     </div>
 
-    <main id="main-content" class="px-4 mt-4 max-w-md mx-auto">
+    <nav class="nav-bar">
+        <button class="nav-item active" onclick="switchSection('prayer', this)"><i class="fa-solid fa-clock"></i>সময়</button>
+        <button class="nav-item" onclick="switchSection('zakat', this)"><i class="fa-solid fa-calculator"></i>যাকাত</button>
+        <button class="nav-item" onclick="switchSection('tasbih', this)"><i class="fa-solid fa-fingerprint"></i>তাসবিহ</button>
+        <button class="nav-item" onclick="switchSection('quran', this)"><i class="fa-solid fa-book-quran"></i>কুরআন</button>
+        <button class="nav-item" onclick="switchSection('hadith', this)"><i class="fa-solid fa-book"></i>হাদিস</button>
+        <button class="nav-item" onclick="switchSection('qibla', this)"><i class="fa-solid fa-compass"></i>কিবলা</button>
+    </nav>
 
-        <section id="sec-prayer" class="space-y-4">
-            <div class="glass-card rounded-2xl p-4 flex flex-col gap-3">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-2 text-sm">
-                        <i class="fa-solid fa-location-dot text-rose-500"></i>
-                        <select id="district-select" onchange="updateDistrictTimes()" class="bg-transparent border-none font-bold text-emerald-400 focus:outline-none cursor-pointer">
-                            <option value="Dhaka" selected style="background-color: #064e3b; color: white;">Dhaka (ঢাকা)</option>
-                            <option value="Chittagong" style="background-color: #064e3b; color: white;">Chittagong (চট্টগ্রাম)</option>
-                            <option value="Sylhet" style="background-color: #064e3b; color: white;">Sylhet (সিলেট)</option>
-                            <option value="Rajshahi" style="background-color: #064e3b; color: white;">Rajshahi (রাজশাহী)</option>
-                            <option value="Khulna" style="background-color: #064e3b; color: white;">Khulna (খুলনা)</option>
-                            <option value="Barisal" style="background-color: #064e3b; color: white;">Barisal (বরিশাল)</option>
-                            <option value="Rangpur" style="background-color: #064e3b; color: white;">Rangpur (রংপুর)</option>
-                            <option value="Mymensingh" style="background-color: #064e3b; color: white;">Mymensingh (ময়মনসিংহ)</option>
-                        </select>
-                    </div>
-                    <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-semibold border border-emerald-500/30">IFB Hanafi</span>
-                </div>
+    <script>
+        let currentLang = 'bn';
+        let tasbihCount = 0;
 
-                <div class="glass-card-active rounded-xl p-5 text-center relative overflow-hidden">
-                    <p id="next-prayer-label" class="text-sm tracking-wide opacity-80">পরবর্তী নামাজ</p>
-                    <h2 id="next-prayer-name" class="text-3xl font-bold my-1 text-white">এশা</h2>
-                    <div id="countdown-timer" class="text-4xl font-mono font-bold tracking-wider text-emerald-300 my-2">00:24:31</div>
-                    <div class="flex justify-center items-center gap-2 text-xs opacity-70">
-                        <i class="fa-regular fa-clock"></i>
-                        <span id="live-clock">BST (GMT+6)</span>
-                    </div>
-                </div>
-            </div>
+        function switchSection(sectionId, element) {
+            document.querySelectorAll('.main-section').forEach(sec => sec.classList.add('hidden'));
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            
+            document.getElementById(sectionId).classList.remove('hidden');
+            element.classList.add('active');
+        }
 
-            <div class="space-y-2" id="prayer-cards-list">
-                <div id="card-fajr" class="glass-card rounded-xl p-3.5 flex items-center justify-between transition-all duration-300">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-cloud-sun text-amber-400 text-lg"></i>
-                        <div>
-                            <p class="font-bold text-base prayer-title" data-key="fajr">ফজর</p>
-                            <p class="text-xs opacity-50 font-mono">Fajr</p>
-                        </div>
-                    </div>
-                    <span id="time-fajr" class="font-mono font-bold text-base">03:44 AM</span>
-                </div>
-                <div id="card-dhuhr" class="glass-card rounded-xl p-3.5 flex items-center justify-between transition-all duration-300">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-sun text-xl text-amber-500"></i>
-                        <div>
-                            <p class="font-bold text-base prayer-title" data-key="dhuhr">যোহর</p>
-                            <p class="text-xs opacity-50 font-mono">Dhuhr</p>
-                        </div>
-                    </div>
-                    <span id="time-dhuhr" class="font-mono font-bold text-base">11:59 AM</span>
-                </div>
-                <div id="card-asr" class="glass-card rounded-xl p-3.5 flex items-center justify-between transition-all duration-300">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-cloud-sun-rain text-amber-600 text-lg"></i>
-                        <div>
-                            <p class="font-bold text-base prayer-title" data-key="asr">আসর</p>
-                            <p class="text-xs opacity-50 font-mono">Asr (Hanafi)</p>
-                        </div>
-                    </div>
-                    <span id="time-asr" class="font-mono font-bold text-base">04:40 PM</span>
-                </div>
-                <div id="card-maghrib" class="glass-card rounded-xl p-3.5 flex items-center justify-between transition-all duration-300">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-mountain-sun text-orange-500 text-lg"></i>
-                        <div>
-                            <p class="font-bold text-base prayer-title" data-key="maghrib">মাগরিব</p>
-                            <p class="text-xs opacity-50 font-mono">Maghrib</p>
-                        </div>
-                    </div>
-                    <span id="time-maghrib" class="font-mono font-bold text-base">06:47 PM</span>
-                </div>
-                <div id="card-isha" class="glass-card rounded-xl p-3.5 flex items-center justify-between transition-all duration-300">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-moon text-indigo-400 text-lg"></i>
-                        <div>
-                            <p class="font-bold text-base prayer-title" data-key="isha">এশা</p>
-                            <p class="text-xs opacity-50 font-mono">Isha</p>
-                        </div>
-                    </div>
-                    <span id="time-isha" class="font-mono font-bold text-base">08:15 PM</span>
-                </div>
-            </div>
+        function toggleLanguage() {
+            currentLang = currentLang === 'bn' ? 'en' : 'bn';
+            const title = document.getElementById('appTitle');
+            if(currentLang === 'en') {
+                title.innerText = "Noor-E-Iman";
+            } else {
+                title.innerText = "নূর-ই-ইমান";
+            }
+        }
 
-            <div class="grid grid-cols-2 gap-3">
-                <div class="glass-card rounded-xl p-3 flex flex-col items-center justify-center text-center">
-                    <div class="flex items-center gap-1 text-xs opacity-75 mb-1 text-sky-300">
-                        <i class="fa-solid fa-snowflake"></i> <span class="lbl-sehri-end">সেহরি শেষ</span>
-                    </div>
-                    <span id="time-sehri" class="font-mono font-bold text-base text-sky-200">03:44 AM</span>
-                </div>
-                <div class="glass-card rounded-xl p-3 flex flex-col items-center justify-center text-center">
-                    <div class="flex items-center gap-1 text-xs opacity-75 mb-1 text-orange-400">
-                        <i class="fa-solid fa-fire"></i> <span class="lbl-iftar">ইফতার</span>
-                    </div>
-                    <span id="time-iftar" class="font-mono font-bold text-base text-orange-200">06:47 PM</span>
-                </div>
-            </div>
-        </section>
+        function countTasbih() {
+            tasbihCount++;
+            document.getElementById('counterDisplay').innerText = tasbihCount;
+        }
 
-        <section id="sec-zakat" class="hidden space-y-4">
-            <div class="glass-card rounded-2xl p-4">
-                <h2 class="text-xl font-bold text-emerald-400 mb-3 text-center lbl-zakat-head">যাকাত হিসাবকারী</h2>
-                <div class="space-y-3 text-sm">
-                    <div class="grid grid-cols-2 gap-2">
-                        <div>
-                            <label class="block text-xs opacity-75 mb-1 lbl-gold-rate">স্বর্ণের দাম (১ গ্রাম টাকা)</label>
-                            <input type="number" id="zk-gold-rate" value="9500" class="w-full bg-black/30 border border-white/10 rounded-lg p-2 font-mono text-emerald-300 focus:outline-none focus:border-emerald-500">
-                        </div>
-                        <div>
-                            <label class="block text-xs opacity-75 mb-1 lbl-silver-rate">রূপার দাম (১ গ্রাম টাকা)</label>
-                            <input type="number" id="zk-silver-rate" value="150" class="w-full bg-black/30 border border-white/10 rounded-lg p-2 font-mono text-emerald-300 focus:outline-none focus:border-emerald-500">
-                        </div>
-                    </div>
-                    <hr class="border-white/10 my-1">
-                    <div>
-                        <label class="block text-xs opacity-75 mb-1 lbl-cash">নগদ টাকা (ব্যাংক/বাসায়)</label>
-                        <input type="number" id="zk-cash" value="0" class="w-full bg-black/30 border border-white/10 rounded-lg p-2 font-mono focus:outline-none focus:border-emerald-500">
-                    </div>
-                    <div class="grid grid-cols-2 gap-2">
-                        <div>
-                            <label class="block text-xs opacity-75 mb-1 lbl-gold-amt">মোট স্বর্ণ (গ্রাম)</label>
-                            <input type="number" id="zk-gold-qty" value="0" class="w-full bg-black/30 border border-white/10 rounded-lg p-2 font-mono focus:outline-none focus:border-emerald-500">
-                        </div>
-                        <div>
-                            <label class="block text-xs opacity-75 mb-1 lbl-silver-amt">মোট রূপা (গ্রাম)</label>
-                            <input type="number" id="zk-silver-qty" value="0" class="w-full bg-black/30 border border-white/10 rounded-lg p-2 font-mono focus:outline-none focus:border-emerald-500">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-xs opacity-75 mb-1 lbl-business">ব্যবসায়িক সম্পদ</label>
-                        <input type="number" id="zk-business" value="0" class="w-full bg-black/30 border border-white/10 rounded-lg p-2 font-mono focus:outline-none focus:border-emerald-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs opacity-75 mb-1 lbl-debts">ঋণ ও দায়সমূহ (বাদ যাবে)</label>
-                        <input type="number" id="zk-debts" value="0" class="w-full bg-black/30 border border-white/10 rounded-lg p-2 font-mono text-rose-300 focus:outline-none focus:border-emerald-500">
-                    </div>
+        function resetTasbih() {
+            tasbihCount = 0;
+            document.getElementById('counterDisplay').innerText = tasbihCount;
+        }
 
-                    <button onclick="calculateZakat()" class="w-full py-3 mt-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl shadow-lg transition cursor-pointer lbl-btn-calc">হিসাব করুন</button>
-                </div>
-            </div>
-
-            <div id="zakat-result-box" class="glass-card rounded-2xl p-5 text-center hidden transition-all duration-300">
-                <h3 id="zk-res-status" class="text-lg font-bold text-amber-400 mb-2">নেসাব পূর্ণ হয়েছে</h3>
-                <p class="text-xs opacity-70 mb-1 lbl-total-wealth">আপনার মোট যাকাতযোগ্য সম্পদ:</p>
-                <div id="zk-total-wealth" class="text-xl font-mono font-bold mb-3">৳ 0.00</div>
-                <div class="bg-emerald-950/40 border border-emerald-500/30 p-3 rounded-xl">
-                    <p class="text-xs opacity-80 mb-1 lbl-payable-zakat">প্রদেয় যাকাত (২.৫%):</p>
-                    <p id="zk-final-payable" class="text-3xl font-mono font-bold text-emerald-400">৳ 0.00</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="sec-tasbih" class="hidden space-y-4">
-            <div class="glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center">
-                <div class="flex gap-2 mb-4 w-full justify-center">
-                    <button onclick="setTasbihTarget(33)" class="px-3 py-1 text-xs font-semibold rounded-lg glass-card border border-emerald-500/20 cursor-pointer">33</button>
-                    <button onclick="setTasbihTarget(100)" class="px-3 py-1 text-xs font-semibold rounded-lg glass-card border border-emerald-500/20 cursor-pointer">100</button>
-                    <button onclick="setTasbihTarget(Infinity)" class="px-3 py-1 text-xs font-semibold rounded-lg glass-card border border-emerald-500/20 cursor-pointer lbl-infinite">সীমাহীন</button>
-                </div>
-
-                <div class="text-xs opacity-60 mb-1"><span class="lbl-target">লক্ষ্য</span>: <span id="ts-target-val" class="font-mono">33</span></div>
-                
-                <button onclick="incrementTasbih()" class="w-48 h-48 rounded-full border-4 border-emerald-500/40 bg-gradient-to-br from-emerald-800/30 to-slate-900/50 flex flex-col items-center justify-center shadow-2xl active:scale-95 transition-all transform cursor-pointer group focus:outline-none">
-                    <span id="ts-counter" class="text-5xl font-mono font-bold text-white tracking-tighter">0</span>
-                    <span id="ts-click-hint" class="text-xxs opacity-40 mt-2 uppercase tracking-widest text-emerald-300 group-hover:opacity-70">TAP</span>
-                </button>
-
-                <div class="flex items-center justify-between w-full mt-6 px-4">
-                    <button onclick="resetTasbih()" class="flex items-center gap-2 text-sm text-rose-400 hover:text-rose-300 font-semibold cursor-pointer">
-                        <i class="fa-solid fa-rotate-right"></i> <span class="lbl-reset">রিসেট</span>
-                    </button>
-                    <div class="text-xs opacity-70 font-semibold">
-                        <span class="lbl-cycle">সাইকেল</span>: <span id="ts-cycle" class="font-mono text-emerald-400">0</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="sec-quran" class="hidden space-y-4">
-            <div class="glass-card rounded-xl p-3 flex items-center justify-between text-xs">
-                <span class="font-semibold lbl-text-size">লেখা ছোট/বড় করুন:</span>
-                <input type="range" id="quran-font-slider" min="16" max="36" value="24" oninput="adjustQuranFont(this.value)" class="accent-emerald-500 bg-white/10 rounded-lg cursor-pointer">
-            </div>
-
-            <div class="flex gap-1 overflow-x-auto no-scrollbar py-1">
-                <button onclick="switchSurah('yaseen')" id="btn-s-yaseen" class="px-4 py-2 text-xs font-bold rounded-xl glass-card border-emerald-500/40 text-emerald-300 whitespace-nowrap cursor-pointer shrink-0">সূরা ইয়াসীন</button>
-                <button onclick="switchSurah('mulk')" id="btn-s-mulk" class="px-4 py-2 text-xs font-bold rounded-xl glass-card whitespace-nowrap cursor-pointer shrink-0">সূরা আল-মূলক</button>
-                <button onclick="switchSurah('rahman')" id="btn-s-rahman" class="px-4 py-2 text-xs font-bold rounded-xl glass-card whitespace-nowrap cursor-pointer shrink-0">সূরা আর-রহমান</button>
-            </div>
-
-            <div id="quran-viewport" class="glass-card rounded-2xl p-4 max-h-[60vh] overflow-y-auto space-y-4 shadow-inner">
-                </div>
-        </section>
-
-        <section id="sec-hadith" class="hidden space-y-4">
-            <div class="grid grid-cols-2 gap-2 p-1 glass-card rounded-xl text-xs font-bold">
-                <button onclick="toggleHadithTab('hadith')" id="tab-hd-btn" class="py-2 rounded-lg bg-emerald-700 text-white cursor-pointer">আজকের হাদিস</button>
-                <button onclick="toggleHadithTab('masala')" id="tab-ms-btn" class="py-2 rounded-lg text-emerald-300 hover:bg-white/5 cursor-pointer">প্রয়োজনীয় মাসআলা</button>
-            </div>
-
-            <div id="box-hadith-feed" class="space-y-3">
-                </div>
-
-            <div id="box-masala-accordion" class="space-y-2 hidden">
-                </div>
-        </section>
-
-        <section id="sec-qibla" class="hidden space-y-4">
-            <div class="glass-card rounded-2xl p-6 flex flex-col items-center justify-center text-center">
-                <h2 class="text-lg font-bold text-emerald-400 mb-1 lbl-qibla-head">কিবলা কম্পাস</h2>
-                <p class="text-xs opacity-60 mb-6 lbl-qibla-sub">মক্কার দিকে নির্দেশক (বাংলাদেশ থেকে ২৭৮.৫°)</p>
-
-                <div class="w-56 h-56 rounded-full relative bg-slate-900/60 border-4 border-white/10 shadow-2xl flex items-center justify-center overflow-hidden">
-                    <div class="absolute w-full h-full p-2 flex flex-col justify-between items-center text-xxs font-mono font-bold opacity-30">
-                        <span>N</span>
-                        <span>S</span>
-                    </div>
-                    <div class="absolute w-
+        function calculateZakat() {
+            const asset = document.getElementById('zakatAsset').value;
+            if(!asset || asset <= 0) {
+                document.getElementById('zakatResult').innerText = currentLang === 'bn' ? "সঠিক সংখ্যা লিখুন" : "Enter a valid amount";
+                return;
+            }
+            const zakat = asset * 0.025;
+            document.getElementById('zakatResult').innerText = currentLang === 'bn' ? `আপনার যাকাত: ৳${zakat.toFixed(2)}` : `Your Zakat: ৳${zakat.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
